@@ -1,4 +1,5 @@
-import reportesApiClient from '../reportesApiClient';
+import apiClient from '../apiClient';
+
 
 /**
  * Obtiene el reporte de avances del día en formato PDF.
@@ -6,7 +7,7 @@ import reportesApiClient from '../reportesApiClient';
  * @returns Una promesa que se resuelve con los datos del PDF como un Blob.
  */
 export const getReporteAvancesDia = async (dia: string): Promise<Blob> => {
-  const response = await reportesApiClient.get('/inyeccion/avance-dia', {
+  const response = await apiClient.get('/reportes/avance-dia', {
     params: { dia },
     responseType: 'blob',
   });
@@ -22,7 +23,7 @@ export const getReporteAvancesDia = async (dia: string): Promise<Blob> => {
  * @returns Una promesa que se resuelve con los datos del PDF como un Blob.
  */
 export const getReporteAvancesSemana = async (anio: number, semana: number): Promise<Blob> => {
-  const response = await reportesApiClient.get('/inyeccion/avance-semana', {
+  const response = await apiClient.get('/reportes/avance-semana', {
     params: { anio, semana },
     responseType: 'blob',
   });
@@ -34,7 +35,7 @@ export const getReporteAvancesSemana = async (anio: number, semana: number): Pro
  * @returns Una promesa que se resuelve con los datos del PDF como un Blob.
  */
 export const getReporteInventarioProceso = async (): Promise<Blob> => {
-  const response = await reportesApiClient.get('/inyeccion/inventario-proceso', {
+  const response = await apiClient.get('/reportes/inventario-proceso', {
     responseType: 'blob',
   });
   return response.data;
