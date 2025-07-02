@@ -3,4 +3,4 @@ export interface Color {
   descripcion: string;
 }
 
-export type ColorFormData = Omit<Color, 'id' | 'createdAt' | 'updatedAt'>;
+export type ColorFormData = Omit<Color, 'id'>;

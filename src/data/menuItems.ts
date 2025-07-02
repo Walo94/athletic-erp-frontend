@@ -18,10 +18,12 @@ export const menuItems: MenuItem[] = [
         label: 'Catálogos',
         children: [
           { id: 'colores', label: 'Colores', href: '/cpt/catalogos/colores', icon: React.createElement('img', { src: "/colores.png", className: iconClass }) },
-          { id: 'corridas', label: 'Corridas', href: '/cpt/catalogos/corridas', icon: React.createElement('img', { src: "/corridas.png", className: iconClass })},
+          { id: 'corridas', label: 'Corridas', href: '/cpt/catalogos/corridas', icon: React.createElement('img', { src: "/corridas.png", className: iconClass }) },
+          { id: 'marcas', label: 'Marcas', href: '/cpt/catalogos/marcas', icon: React.createElement('img', { src: "/marca.png", className: iconClass }) },
           { id: 'combinaciones', label: 'Combinaciones', href: '/cpt/catalogos/combinaciones', icon: React.createElement('img', { src: "/combinacion.png", className: iconClass }) },
           { id: 'materiales', label: 'Materiales', href: '/cpt/catalogos/materiales', icon: React.createElement('img', { src: "/materiales.png", className: iconClass }) },
           { id: 'lineas', label: 'Líneas', href: '/cpt/catalogos/lineas', icon: React.createElement('img', { src: "/linea.png", className: iconClass }) },
+          { id: 'sublineas', label: 'Sublíneas', href: '/cpt/catalogos/sublineas', icon: React.createElement('img', { src: "/sublinea.png", className: iconClass }) },
           { id: 'proveedores', label: 'Proveedores', href: '/cpt/catalogos/proveedores', icon: React.createElement('img', { src: "/proveedor.png", className: iconClass })},
           { id: 'productos', label: 'Productos', href: '/cpt/catalogos/productos', icon: React.createElement('img', { src: "/producto.png", className: iconClass })}
         ]

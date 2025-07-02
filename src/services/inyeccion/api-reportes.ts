@@ -28,3 +28,14 @@ export const getReporteAvancesSemana = async (anio: number, semana: number): Pro
   });
   return response.data;
 };
+
+/**
+ * Obtiene el reporte de inventario en proceso en pdf.
+ * @returns Una promesa que se resuelve con los datos del PDF como un Blob.
+ */
+export const getReporteInventarioProceso = async (): Promise<Blob> => {
+  const response = await reportesApiClient.get('/inyeccion/inventario-proceso', {
+    responseType: 'blob',
+  });
+  return response.data;
+};

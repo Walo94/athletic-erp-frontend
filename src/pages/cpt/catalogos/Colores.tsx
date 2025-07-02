@@ -152,8 +152,6 @@ const Colores: React.FC<ColoresProps> = ({ empresa }) => {
           {/* Header */}
           <div className="mb-6">
             <h2 className="text-2xl font-bold text-gray-700 dark:text-white">Gestiona los colores disponibles en el sistema</h2>
-              
-            
           </div>
 
           {/* Controles */}
@@ -167,7 +165,7 @@ const Colores: React.FC<ColoresProps> = ({ empresa }) => {
                   placeholder="Buscar por color o descripción..."
                   value={searchTerm}
                   onChange={handleSearch}
-                  className="w-full pl-10 pr-4 py-2  rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                 />
               </div>
 
@@ -187,30 +185,38 @@ const Colores: React.FC<ColoresProps> = ({ empresa }) => {
               <div className="p-10 text-center text-red-500">{error}</div>
             ) : (
               <>
-                <div className="relative">
-                  {/* Contenedor de la tabla con scroll */}
+              {paginatedColors.length === 0 && searchTerm ? (
+                  <div className="p-10 text-center flex flex-col items-center justify-center">
+                    <img
+                      src="/not-found.gif"
+                      alt="Sin resultados"
+                      className="mb-4 w-30 h-30"
+                    />
+                    <p className="text-gray-800 font-bold dark:text-gray-300">No se encotraron resultados</p>
+                  </div>
+                ) : (
                   <div className="overflow-auto max-h-96">
                     <table className="w-full">
                       <thead className="bg-gray-50 dark:bg-gray-700 sticky top-0 z-10">
                         <tr>
-                          <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                          <th className="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:text-gray-300 uppercase">
                             Color
                           </th>
-                          <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                          <th className="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:text-gray-300 uppercase">
                             Descripción
                           </th>
-                          <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                          <th className="px-6 py-3 text-left text-xs font-medium text-gray-800 dark:text-gray-300 uppercase">
                             Acciones
                           </th>
                         </tr>
                       </thead>
-                      <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                      <tbody className="bg-white dark:bg-gray-800 divide-y dark:divide-gray-700">
                         {paginatedColors.map((color) => (
                           <tr key={color.color} className="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
-                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
+                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white">
                               {color.color}
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-300">
                               {color.descripcion}
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
@@ -226,7 +232,7 @@ const Colores: React.FC<ColoresProps> = ({ empresa }) => {
                       </tbody>
                     </table>
                   </div>
-                </div>
+                )}
 
                 {/* Paginación */}
                 <div className="bg-white dark:bg-gray-800 px-6 py-3 border-t border-gray-200 dark:border-gray-700">

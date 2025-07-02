@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
-import { FileClock, Loader2 } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import { CustomSelect } from '../../../components/ui/CustomSelect';
 import { CustomButton } from '../../../components/ui/CustomButton';
 import { getReporteAvancesSemana } from '../../../services/inyeccion/api-reportes';
@@ -58,7 +58,7 @@ const ReporteSemana: React.FC = () => {
   return (
     <div className="p-4 sm:p-6 space-y-6 bg-gray-50 dark:bg-gray-900 min-h-full">
       <h1 className="text-2xl font-bold text-gray-800 dark:text-white flex items-center gap-2">
-        <FileClock /> Reporte Semanal de Avances
+        Reporte Semanal de Avances
       </h1>
 
       {/* Panel de Controles */}

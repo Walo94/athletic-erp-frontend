@@ -72,7 +72,7 @@ const CorridaForm: React.FC<CorridaFormProps> = ({ corrida, onSave, onClose }) =
               <input type="number" name="corrida" value={formData.corrida === 0 ? '' : formData.corrida} 
               onChange={handleInputChange} min="1" 
               disabled={!!corrida}
-              className={`w-full px-3 p-2 border rounded-lg border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 ${errors.color
+              className={`w-full px-3 p-2 border rounded-lg border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 ${errors.corrida
                     ? 'border-red-500 dark:border-red-500'
                     : 'border-gray-300 dark:border-gray-600'
                   } ${

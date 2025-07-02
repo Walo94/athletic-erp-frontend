@@ -1,41 +1,42 @@
+// src/components/cpt/catalogos/SublineaForm.tsx
+
 import React, { useState, useEffect } from 'react';
 import { X, Save } from 'lucide-react';
-import { Color, ColorFormData } from '../../../types/cpt/catalogos/Color';
+import { Sublinea, SublineaFormData } from '../../../types/cpt/catalogos/Sublinea';
 
-interface ColorFormProps {
-  color: Color | null;
-  onSave: (colorData: ColorFormData, id: number | null) => void;
+interface SublineaFormProps {
+  sublinea: Sublinea | null;
+  onSave: (sublineaData: SublineaFormData, id: number | null) => void;
   onClose: () => void;
 }
 
-const ColorForm: React.FC<ColorFormProps> = ({ color, onSave, onClose }) => {
-  const [formData, setFormData] = useState({
-    color: 0,
+const SublineaForm: React.FC<SublineaFormProps> = ({ sublinea, onSave, onClose }) => {
+  const [formData, setFormData] = useState<SublineaFormData>({
+    sublinea: 0,
     descripcion: ''
   });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   useEffect(() => {
-    if (color) {
+    if (sublinea) {
       setFormData({
-        color: color.color,
-        descripcion: color.descripcion
+        sublinea: sublinea.sublinea,
+        descripcion: sublinea.descripcion
       });
     } else {
       setFormData({
-        color: 0,
+        sublinea: 0,
         descripcion: ''
       });
     }
-  }, [color]);
+  }, [sublinea]);
 
   const validateForm = () => {
     const newErrors: { [key: string]: string } = {};
 
-    if (!formData.color || formData.color <= 0) {
-      newErrors.color = 'El Color debe ser un número positivo';
+    if (!formData.sublinea || formData.sublinea <= 0) {
+      newErrors.sublinea = 'La Sublínea debe ser un número positivo';
     }
-
     if (!formData.descripcion.trim()) {
       newErrors.descripcion = 'El campo Descripción es requerido';
     } else if (formData.descripcion.trim().length < 2) {
@@ -44,26 +45,20 @@ const ColorForm: React.FC<ColorFormProps> = ({ color, onSave, onClose }) => {
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
-
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
     if (validateForm()) {
-      onSave(formData, color ? color.color : null);
+      onSave(formData, sublinea ? sublinea.sublinea : null);
     }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    // Para el campo de color, siempre guardamos como número
-    const valueToSet = name === 'color' ? parseInt(value, 10) || 0 : value;
+    const valueToSet = name === 'sublinea' ? parseInt(value, 10) || 0 : value;
 
-    setFormData(prev => ({
-      ...prev,
-      [name]: valueToSet
-    }));
+    setFormData(prev => ({ ...prev, [name]: valueToSet }));
 
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
@@ -82,10 +77,9 @@ const ColorForm: React.FC<ColorFormProps> = ({ color, onSave, onClose }) => {
       onClick={handleOverlayClick}
     >
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-md">
-        {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
           <h2 className="text-xl font-semibold text-gray-800 dark:text-white">
-            {color ? 'Editar Color' : 'Registrar Color'}
+            {sublinea ? 'Editar Sublínea' : 'Registrar Sublínea'}
           </h2>
           <button
             onClick={onClose}
@@ -94,36 +88,30 @@ const ColorForm: React.FC<ColorFormProps> = ({ color, onSave, onClose }) => {
             <X className="w-5 h-5 text-gray-500 dark:text-gray-400" />
           </button>
         </div>
-
-        {/* Form */}
         <form onSubmit={handleSubmit} className="p-6">
           <div className="space-y-4">
-            {/* Campo Color */}
             <div>
-              <label htmlFor="color" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Color <span className="text-red-500">*</span>
+              <label htmlFor="sublinea" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Sublínea <span className="text-red-500">*</span>
               </label>
               <input
                 type="number"
-                id="color"
-                name="color"
-                value={formData.color === 0 ? '' : formData.color}
+                id="sublinea"
+                name="sublinea"
+                value={formData.sublinea === 0 ? '' : formData.sublinea}
                 onChange={handleInputChange}
                 min="1"
-                className={`w-full px-3 p-2 border rounded-lg border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 ${errors.color
+                className={`w-full px-3 p-2 border rounded-lg border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 ${errors.sublinea
                     ? 'border-red-500 dark:border-red-500'
                     : 'border-gray-300 dark:border-gray-600'
                   } ${
-                  !!color ? 'bg-gray-100 dark:bg-gray-700 cursor-not-allowed' : ''
+                  // Añade clases para el estilo cuando está deshabilitado
+                  !!sublinea ? 'bg-gray-100 dark:bg-gray-700 cursor-not-allowed' : ''
                   }`}
-                disabled={!!color}
+                disabled={!!sublinea}
               />
-              {errors.color && (
-                <p className="mt-1 text-sm text-red-500">{errors.color}</p>
-              )}
+              {errors.sublinea && <p className="mt-1 text-sm text-red-500">{errors.sublinea}</p>}
             </div>
-
-            {/* Campo Descripción */}
             <div>
               <label htmlFor="descripcion" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Descripción <span className="text-red-500">*</span>
@@ -134,18 +122,14 @@ const ColorForm: React.FC<ColorFormProps> = ({ color, onSave, onClose }) => {
                 name="descripcion"
                 value={formData.descripcion}
                 onChange={handleInputChange}
-                className={`w-full px-3 py-2 border rounded-lg border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 ${errors.descripcion
+                className={`w-full px-3 py-2 border rounded-lg border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 ${errors.sublinea
                     ? 'border-red-500 dark:border-red-500'
                     : 'border-gray-300 dark:border-gray-600'
                   }`}
               />
-              {errors.descripcion && (
-                <p className="mt-1 text-sm text-red-500">{errors.descripcion}</p>
-              )}
+              {errors.descripcion && <p className="mt-1 text-sm text-red-500">{errors.descripcion}</p>}
             </div>
           </div>
-
-          {/* Buttons */}
           <div className="flex items-center justify-end space-x-3 mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
             <button
               type="button"
@@ -159,7 +143,7 @@ const ColorForm: React.FC<ColorFormProps> = ({ color, onSave, onClose }) => {
               className="flex items-center space-x-2 px-4 py-2 text-white rounded-lg bg-[#42b0ff] hover:opacity-90 transition-opacity duration-200"
             >
               <Save className="w-4 h-4" />
-              <span>{color ? 'Actualizar' : 'Guardar'}</span>
+              <span>{sublinea ? 'Actualizar' : 'Guardar'}</span>
             </button>
           </div>
         </form>
@@ -168,4 +152,4 @@ const ColorForm: React.FC<ColorFormProps> = ({ color, onSave, onClose }) => {
   );
 };
 
-export default ColorForm;
+export default SublineaForm;

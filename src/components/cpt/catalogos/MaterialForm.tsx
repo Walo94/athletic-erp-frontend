@@ -70,7 +70,6 @@ const MaterialForm: React.FC<MaterialFormProps> = ({ material, onSave, onClose }
                     ? 'border-red-500 dark:border-red-500'
                     : 'border-gray-300 dark:border-gray-600'
                   } ${
-                  // Añade clases para el estilo cuando está deshabilitado
                   !!material ? 'bg-gray-100 dark:bg-gray-700 cursor-not-allowed' : ''
                   }`}
                    disabled={!!material}
@@ -89,7 +88,7 @@ const MaterialForm: React.FC<MaterialFormProps> = ({ material, onSave, onClose }
             </div>
           </div>
           <div className="flex justify-end space-x-3 mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-            <button type="button" onClick={onClose} className="px-4 py-2 text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600">Cancelar</button>
+            <button type="button" onClick={onClose} className="px-4 py-2 text-white dark:text-gray-300 bg-gray-400 dark:bg-gray-700 rounded-lg hover:opacity-90 dark:hover:opacity-90 transition-colors duration-200">Cancelar</button>
             <button type="submit" className="flex items-center space-x-2 px-4 py-2 text-white rounded-lg bg-[#42b0ff] hover:opacity-90"><Save className="w-4 h-4" /><span>{material ? 'Actualizar' : 'Guardar'}</span></button>
           </div>
         </form>

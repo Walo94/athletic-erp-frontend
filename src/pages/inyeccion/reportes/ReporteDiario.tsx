@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { format } from 'date-fns';
 import toast from 'react-hot-toast';
-import { FileText, Loader2 } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import { CustomDatePicker } from '../../../components/ui/CustomDatePicker';
 import { CustomButton } from '../../../components/ui/CustomButton';
 import { getReporteAvancesDia } from '../../../services/inyeccion/api-reportes';
@@ -50,8 +50,8 @@ const ReporteDiario: React.FC = () => {
 
      return (
     <div className="p-4 sm:p-6 space-y-6 bg-gray-50 dark:bg-gray-900 min-h-full">
-      <h1 className="text-2xl font-bold text-gray-800 dark:text-white flex items-center gap-2">
-        <FileText /> Reporte Diario de Avances
+      <h1 className="text-2xl font-bold text-gray-700 dark:text-white flex items-center gap-2">
+        Reporte Diario de Avances
       </h1>
 
       {/* Panel de Controles */}
