@@ -98,7 +98,7 @@ const VerificacionLotes: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <CustomCard><h3 className="font-medium">Total de Lotes</h3><p className="text-2xl font-bold">{stats.total}</p></CustomCard>
+        <CustomCard><h3 className="font-medium">Total de Lotes</h3><p className="text-2xl font-bold text-yellow-500">{stats.total}</p></CustomCard>
         <CustomCard><h3 className="font-medium">Lotes Verificados</h3><p className="text-2xl font-bold text-green-600">{stats.verificados}</p></CustomCard>
         <CustomCard><h3 className="font-medium">Lotes Pendientes</h3><p className="text-2xl font-bold text-orange-500">{stats.pendientes}</p></CustomCard>
       </div>
