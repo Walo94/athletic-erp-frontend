@@ -11,7 +11,8 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, menu }) => {
-  const [expandedMenus, setExpandedMenus] = useState<string[]>(['catalogos']);
+  // 1. El estado inicial ahora es un array vacío, por lo que los menús inician cerrados.
+  const [expandedMenus, setExpandedMenus] = useState<string[]>([]);
   const location = useLocation();
 
   const toggleMenu = (menuId: string) => {
@@ -84,11 +85,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, menu }) => {
     <>
       {isOpen && <div className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden" onClick={onClose} />}
       <aside className={`fixed top-16 left-0 h-[calc(100vh-4rem)] w-64 bg-white dark:bg-gray-800 shadow-lg border-r border-gray-200 dark:border-gray-700 z-50 transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 lg:static lg:h-[calc(100vh-4rem)]`}>
-        <div className="p-4">
-          {/* Enlace para volver al menú principal de módulos */}
+        {/* 2. Se agregaron las clases h-full y overflow-y-auto para habilitar el scroll vertical */}
+        <div className="p-4 h-full overflow-y-auto">
           <Link
             to="/"
-            onClick={onClose} // Importante para que el menú se cierre en móviles al navegar
+            onClick={onClose}
             className="flex items-center p-3 rounded-lg text-lg font-semibold text-gray-800 dark:text-white mb-4 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
           >
             <Home className="w-6 h-6 mr-3 text-blue-500" />
